@@ -3,7 +3,7 @@ from asyncio import sleep
 import markups
 import random
 
-bot = Bot(token = '5040783029:AAF72fiuc6SZCFwkzTyHWDGxWtG9YYWDqKU')
+bot = Bot(token = 'ВАШ ТОКЕН')
 dp = Dispatcher(bot)
 @dp.message_handler(commands=['start'])
 async def start(message: types.Message):
