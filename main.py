@@ -3,7 +3,7 @@ from asyncio import sleep
 import markups
 import random
 
-bot = Bot(token = 'ВАШ ТОКЕН')
+bot = Bot(token = '5040783029:AAF72fiuc6SZCFwkzTyHWDGxWtG9YYWDqKU')
 dp = Dispatcher(bot)
 @dp.message_handler(commands=['start'])
 async def start(message: types.Message):
@@ -63,13 +63,13 @@ async def main(message: types.Message):
     elif message.text == '🎲 Кости':
         await bot.send_message(message.chat.id, '🎲 Бросьте кости', reply_markup = markups.diceMenu)
     elif message.text == '🎲 Бросить Кости':
-        await bot.send_message(message.chat.id, '🎲 Кости соперника')
-        bot_data = await bot.send_dice(message.from_user.id)
-        bot_data = bot_data['dice']['value']
-        await sleep(2)
-        await bot.send_message(message.chat.id, '🎲 Ваши кости')
+        await bot.send_message(message.chat.id, '🎲 Ваши кости:')
         user_data = await bot.send_dice(message.from_user.id)
         user_data = user_data['dice']['value']
+        await sleep(2)
+        await bot.send_message(message.chat.id, '🎲 Кости соперника:')
+        bot_data = await bot.send_dice(message.from_user.id)
+        bot_data = bot_data['dice']['value']
         await sleep(4)
         if user_data > bot_data:
             await bot.send_message(message.chat.id, 'Поздравляю, вы выиграли!')
