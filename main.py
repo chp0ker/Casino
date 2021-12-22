@@ -1,4 +1,5 @@
 from aiogram import Bot, Dispatcher, executor, types
+from asyncio import sleep
 import markups
 import random
 
@@ -27,33 +28,55 @@ async def main(message: types.Message):
 
     elif message.text == '💰 Узнать баланс':
         await bot.send_message(message.chat.id, 'Ваш баланс: 0', reply_markup = markups.balanceMenu)
-
+    elif message.text == '💰 Пополнить баланс':
+        await bot.send_message(message.chat.id, 'Команда в разработке')
 
     elif message.text == '👤 Техническая поддержка':
-        await bot.send_message(message.chat.id, 'Техническая поддержка: @Vboost')
+        await bot.send_message(message.chat.id, 'Техническая поддержка и создатель кода: @chp0ker1337')
 
-    elif message.text == '🤑 Орел и Решка':
+    elif message.text == '🪙 Орел и Решка':
         await bot.send_message(message.chat.id, 'Выберите Орел или Решка', reply_markup = markups.coinMenu)
-
     elif message.text == '🪙 Орел' or message.text == '🪙 Решка':
         heads = open('coin-heads.webp', 'rb')
         tails = open('coin-tails.webp', 'rb')
-        side_tuple = ['Орел', 'Решка']
+        side_tuple = ['🪙 Орел', '🪙 Решка']
         random_side = random.choice(side_tuple)
         if random_side == message.text:
-            if random_side == 'Орел':
+            if random_side == '🪙 Орел':
                 await bot.send_sticker(message.chat.id, heads)
+                await sleep(0.5)
                 await bot.send_message(message.chat.id, 'Поздравляю, вы выиграли! Выпала сторона: ' + str(random_side))
             else:
                 await bot.send_sticker(message.chat.id, tails)
+                await sleep(0.5)
                 await bot.send_message(message.chat.id, 'Поздравляю, вы выиграли! Выпала сторона: ' + str(random_side))
         else:
-            if random_side == 'Орел':
+            if random_side == '🪙 Орел':
                 await bot.send_sticker(message.chat.id, heads)
+                await sleep(0.5)
                 await bot.send_message(message.chat.id, 'К сожалению вы проиграли! Выпала сторона: ' + str(random_side))
             else:
                 await bot.send_sticker(message.chat.id, tails)
+                await sleep(0.5)
                 await bot.send_message(message.chat.id, 'К сожалению вы проиграли! Выпала сторона: ' + str(random_side))
+
+    elif message.text == '🎲 Кости':
+        await bot.send_message(message.chat.id, '🎲 Бросьте кости', reply_markup = markups.diceMenu)
+    elif message.text == '🎲 Бросить Кости':
+        await bot.send_message(message.chat.id, '🎲 Кости соперника')
+        bot_data = await bot.send_dice(message.from_user.id)
+        bot_data = bot_data['dice']['value']
+        await sleep(2)
+        await bot.send_message(message.chat.id, '🎲 Ваши кости')
+        user_data = await bot.send_dice(message.from_user.id)
+        user_data = user_data['dice']['value']
+        await sleep(4)
+        if user_data > bot_data:
+            await bot.send_message(message.chat.id, 'Поздравляю, вы выиграли!')
+        elif user_data < bot_data:
+            await bot.send_message(message.chat.id, 'К сожалению вы проиграли!')
+        else:
+            await bot.send_message(message.chat.id, 'Произошла ничья!')
 
     elif message.text == '🤑 Наперстки':
         await bot.send_message(message.chat.id, 'Игра в разработке')
