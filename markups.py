@@ -23,9 +23,6 @@ coinMenu = ReplyKeyboardMarkup(resize_keyboard=True).add(buttonHeads, buttonTail
 buttonRollTheDice = KeyboardButton('🎲 Бросить Кости')
 diceMenu = ReplyKeyboardMarkup(resize_keyboard=True).add(buttonRollTheDice, buttonMain)
 
-buttonStickerDice = KeyboardButton('🎲')
-stickerDiceMenu = ReplyKeyboardMarkup(resize_keyboard=True).add(buttonStickerDice, buttonMain)
-
 # Balance
 buttonReplenish = KeyboardButton('💰 Пополнить баланс')
 balanceMenu = ReplyKeyboardMarkup(resize_keyboard=True).add(buttonReplenish, buttonMain)
