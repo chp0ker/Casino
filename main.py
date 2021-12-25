@@ -6,7 +6,7 @@ import random
 bot = Bot(token = 'ВАШ ТОКЕН')
 dp = Dispatcher(bot)
 
-@dp.message_handler(commands=['start'], chat_type = 'private')
+@dp.message_handler(commands = ['start'], chat_type = 'private')
 async def start(message: types.Message):
     sticker = open('AnimatedSticker.tgs', 'rb')
     await message.answer_sticker(sticker)
@@ -26,11 +26,7 @@ async def GameSelection(message: types.Message):
 
 @dp.message_handler(text = '💰 Узнать баланс', chat_type = 'private')
 async def Balance(message: types.Message):
-    await message.answer('Ваш баланс: 0', reply_markup = markups.balanceMenu)
-
-@dp.message_handler(text = '💰 Пополнить баланс', chat_type = 'private')
-async def TopUpBalance(message: types.Message):
-    await message.answer('Команда в разработке')
+    await message.answer('Ваш баланс: 0')
 
 @dp.message_handler(text = '👤 Техническая поддержка', chat_type = 'private')
 async def Support(message: types.Message):
@@ -49,20 +45,20 @@ async def ChoosingSide(message: types.Message):
         if random_side == '🪙 Орел':
             await message.answer_sticker(heads)
             await sleep(0.5)
-            await message.answer('Поздравляю, вы выиграли! Выпала сторона: ' + str(random_side))
+            await message.answer('Поздравляю, вы выиграли!\nВыпала сторона: ' + str(random_side))
         elif random_side == '🪙 Решка':
             await message.answer_sticker(tails)
             await sleep(0.5)
-            await message.answer('Поздравляю, вы выиграли! Выпала сторона: ' + str(random_side))
+            await message.answer('Поздравляю, вы выиграли!\nВыпала сторона: ' + str(random_side))
     elif random_side != message.text:
         if random_side == '🪙 Орел':
             await message.answer_sticker(heads)
             await sleep(0.5)
-            await message.answer('К сожалению вы проиграли! Выпала сторона: ' + str(random_side))
+            await message.answer('К сожалению вы проиграли!\nВыпала сторона: ' + str(random_side))
         elif random_side == '🪙 Решка':
             await message.answer_sticker(tails)
             await sleep(0.5)
-            await message.answer('К сожалению вы проиграли! Выпала сторона: ' + str(random_side))
+            await message.answer('К сожалению вы проиграли!\nВыпала сторона: ' + str(random_side))
 
 @dp.message_handler(text = '🎲 Кости', chat_type = 'private')
 async def Dice(message: types.Message):
@@ -84,9 +80,19 @@ async def Dice(message: types.Message):
     elif user_data == bot_data:
         await message.answer('Произошла ничья!')
 
-@dp.message_handler(text = '🤑 Наперстки', chat_type = 'private')
-async def Thimbles(message: types.Message):
-    await message.answer('Игра в разработке')
+@dp.message_handler(text = '🎁 Рандомный Бокс', chat_type = 'private')
+async def RandomBox(message: types.Message):
+    await message.answer('Выберите любой бокс', reply_markup = markups.boxMenu)
+@dp.message_handler(lambda message: message.text == '№1 🎁' or message.text == '№2 🎁' or message.text == '№3 🎁'
+                    or message.text == '№4 🎁' or message.text == '№5 🎁', chat_type='private')
+async def RandomBoxWinOrLose(message: types.Message):
+    box_tuple = ['№1 🎁', '№2 🎁', '№3 🎁', '№4 🎁', '№5 🎁']
+    RandomBoxRandom = random.sample(box_tuple, 2)
+    RandomBoxRandom.sort()
+    if RandomBoxRandom[0] == message.text or RandomBoxRandom[1] ==  message.text:
+        await message.answer('Поздравляю, вы выиграли!\nВыигрышные боксы: ' + str(RandomBoxRandom[0]) + ' и ' + str(RandomBoxRandom[1]))
+    else:
+        await message.answer('К сожалению, вы проиграли!\nВыигрышные боксы: ' + str(RandomBoxRandom[0]) + ' и ' + str(RandomBoxRandom[1]))
 
 if __name__ == '__main__':
     executor.start_polling(dp)
