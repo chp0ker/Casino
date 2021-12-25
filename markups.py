@@ -11,8 +11,8 @@ mainMenu = ReplyKeyboardMarkup(resize_keyboard=True).add(buttonGame, buttonBalan
 # Game Menu
 buttonCoin = KeyboardButton('🪙 Орел и Решка')
 buttonDice = KeyboardButton('🎲 Кости')
-buttonThimbles = KeyboardButton('🤑 Наперстки')
-gameMenu = ReplyKeyboardMarkup(resize_keyboard=True).add(buttonCoin, buttonDice, buttonThimbles, buttonMain)
+buttonRandomBox = KeyboardButton('🎁 Рандомный Бокс')
+gameMenu = ReplyKeyboardMarkup(resize_keyboard=True).add(buttonCoin, buttonDice, buttonRandomBox, buttonMain)
 
 # Heads And Tails
 buttonHeads = KeyboardButton('🪙 Орел')
@@ -23,6 +23,10 @@ coinMenu = ReplyKeyboardMarkup(resize_keyboard=True).add(buttonHeads, buttonTail
 buttonRollTheDice = KeyboardButton('🎲 Бросить Кости')
 diceMenu = ReplyKeyboardMarkup(resize_keyboard=True).add(buttonRollTheDice, buttonMain)
 
-# Balance
-buttonReplenish = KeyboardButton('💰 Пополнить баланс')
-balanceMenu = ReplyKeyboardMarkup(resize_keyboard=True).add(buttonReplenish, buttonMain)
+# Random Boxing
+buttonRandomBox1 = KeyboardButton('№1 🎁')
+buttonRandomBox2 = KeyboardButton('№2 🎁')
+buttonRandomBox3 = KeyboardButton('№3 🎁')
+buttonRandomBox4 = KeyboardButton('№4 🎁')
+buttonRandomBox5 = KeyboardButton('№5 🎁')
+boxMenu = ReplyKeyboardMarkup(resize_keyboard=True).add(buttonRandomBox1, buttonRandomBox2, buttonRandomBox3, buttonRandomBox4, buttonRandomBox5, buttonMain)
