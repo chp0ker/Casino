@@ -12,11 +12,12 @@ mainMenu = ReplyKeyboardMarkup(resize_keyboard=True).add(buttonGame, buttonBalan
 buttonCoin = KeyboardButton('🪙 Орел и Решка')
 buttonDice = KeyboardButton('🎲 Кости')
 buttonRandomBox = KeyboardButton('🎁 Рандомный Бокс')
-gameMenu = ReplyKeyboardMarkup(resize_keyboard=True).add(buttonCoin, buttonDice, buttonRandomBox, buttonMain)
+buttonRoulette = KeyboardButton('🏵 Рулетка')
+gameMenu = ReplyKeyboardMarkup(resize_keyboard=True).add(buttonRoulette, buttonDice).row(buttonCoin,buttonRandomBox).row(buttonMain)
 
 # Heads And Tails
-buttonHeads = KeyboardButton('🪙 Орел')
-buttonTails = KeyboardButton('🪙 Решка')
+buttonHeads = KeyboardButton('Орел 🪙')
+buttonTails = KeyboardButton('Решка 🪙')
 coinMenu = ReplyKeyboardMarkup(resize_keyboard=True).add(buttonHeads, buttonTails, buttonMain)
 
 # Dice
@@ -30,3 +31,17 @@ buttonRandomBox3 = KeyboardButton('№3 🎁')
 buttonRandomBox4 = KeyboardButton('№4 🎁')
 buttonRandomBox5 = KeyboardButton('№5 🎁')
 boxMenu = ReplyKeyboardMarkup(resize_keyboard=True).add(buttonRandomBox1, buttonRandomBox2, buttonRandomBox3, buttonRandomBox4, buttonRandomBox5, buttonMain)
+
+# Roulette
+buttonRed = KeyboardButton('🔴 Красное')
+buttonBlack = KeyboardButton('⚫ Черное')
+buttonGreen = KeyboardButton('🟢 Зеленое')
+buttonEven = KeyboardButton('Четное')
+buttonOdd = KeyboardButton('Нечетеное')
+button1st12 = KeyboardButton('Числа от 1 до 12')
+button2st12 = KeyboardButton('Числа от 12 до 24')
+button3st12 = KeyboardButton('Числа от 24 до 36')
+button1_18 = KeyboardButton('Числа от 1 до 18')
+button19_36 = KeyboardButton('Числа от 19 до 36')
+
+rouletteMenu = ReplyKeyboardMarkup(resize_keyboard=True).add(buttonRed, buttonBlack, buttonGreen).row(buttonEven, buttonOdd).row(button1st12, button2st12, button3st12).row(button1_18, button19_36, buttonMain)
