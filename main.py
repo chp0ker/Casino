@@ -1,11 +1,13 @@
 from aiogram import Bot, Dispatcher, executor, types
-from pprint import pprint
 from asyncio import sleep
-import requests
 import markups
 import random
 
-bot = Bot(token='ВАШ ТОКЕН', parse_mode=types.ParseMode.HTML)
+import requests
+from bs4 import BeautifulSoup
+
+
+bot = Bot(token='ТОКЕН', parse_mode=types.ParseMode.HTML)
 dp = Dispatcher(bot)
 
 @dp.message_handler(commands=['start'], chat_type='private')
@@ -33,7 +35,7 @@ async def CourseSelection(message: types.Message):
 @dp.message_handler(text='Валюта', chat_type='private')
 async def CurrencyCourse(message: types.Message):
     await message.answer('Выберите курс какого типа валюты смотреть', reply_markup=markups.currencyMenu)
-    # if message.text == 'USD (Доллар)':
+    #if message.text == 'USD (Доллар)':
 
     #elif message.text == 'EUR (Евро)':
 
