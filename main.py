@@ -3,10 +3,6 @@ from asyncio import sleep
 import markups
 import random
 
-import requests
-from bs4 import BeautifulSoup
-
-
 bot = Bot(token='ТОКЕН', parse_mode=types.ParseMode.HTML)
 dp = Dispatcher(bot)
 
